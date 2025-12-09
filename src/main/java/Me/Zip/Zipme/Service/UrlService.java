@@ -14,6 +14,8 @@ public class UrlService {
     @Autowired
     UrlRepository repo;
 
+    
+
     public String createShortUrl(String longUrl, String alias){
   
         if (alias != null && !alias.isBlank()) {
@@ -43,21 +45,24 @@ public class UrlService {
 
     }
 
-    @Cacheable(value = "urls", key = "#shortCode")
+    @Cacheable(value = "longUrls", key = "#shortCode")
     public String getLongUrl(String shortCode) {
+        System.out.println("🔥 HITTING DB in getLongUrl for: " + shortCode);
         return repo.findByShortCode(shortCode)
                 .map(UrlMapping::getLongUrl)
                 .orElse(null);
     }
 
-    @CacheEvict(value = "urls", key = "#shortCode") // refresh cache after click
+    @CacheEvict(value = "urlInfos", key = "#shortCode")
     public void increaseClickCount(String shortCode) {
+        System.out.println("📊 HITTING DB in getInfo for: " + shortCode);
         repo.findByShortCode(shortCode).ifPresent(mapping -> {
             mapping.setClickCount(mapping.getClickCount() + 1);
             repo.save(mapping);
         });
     }
 
+    @Cacheable(value = "urlInfos", key = "#shortCode")
     public UrlMapping getInfo(String shortCode) {
         return repo.findByShortCode(shortCode).orElse(null);
     }
