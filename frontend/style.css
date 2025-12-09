@@ -1,0 +1,41 @@
+body {
+    background-color: #f8f9fa; /* Light background */
+}
+
+.navbar-brand .text-warning {
+    font-weight: bold;
+}
+
+.card {
+    border: none;
+    border-radius: 0.75rem;
+}
+
+/* Customizing the warning button */
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529; /* Dark text for contrast */
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+}
+
+.alert-success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border-color: #badbcc;
+    /* To ensure elements align vertically in the alert */
+    align-items: center; 
+}
+
+#copyButton {
+    white-space: nowrap; /* Prevents button text from wrapping */
+}
+
+/* Styling for the info list */
+.list-group-item {
+    background-color: transparent;
+}
