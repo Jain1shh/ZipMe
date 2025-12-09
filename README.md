@@ -1,7 +1,7 @@
 # ZipMe – URL Shortener (Java + Spring Boot)
 
-ZipMe is a simple URL-shortening backend service built using Java and Spring Boot.  
-It generates short codes using Base62 encoding, supports optional custom aliases, handles redirects, tracks click counts, and stores data in an H2 file-based database.
+ZipMe is a URL-shortening backend service built using Java and Spring Boot.  
+It generates short codes using Base62 encoding, supports optional custom aliases, handles redirects, tracks click counts, and stores data in an H2 file-based database with caching support for efficiency.
 
 ---
 
