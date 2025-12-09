@@ -11,7 +11,7 @@ It generates short codes using Base62 encoding, supports optional custom aliases
 - Optional custom alias support (validated to prevent duplicates)  
 - Redirect from short URL to long URL  
 - Click count tracking  
-- Spring Cache for faster redirects  
+- Spring Cache & Caffeine for faster redirects  
 - Uses H2 database in file mode (persistent)  
 - Simple Controller–Service–Repository structure  
 
@@ -23,7 +23,7 @@ It generates short codes using Base62 encoding, supports optional custom aliases
 - Spring Boot  
 - Spring Web  
 - Spring Data JPA  
-- Spring Cache  
+- Spring Cache & caffeine 
 - H2 Database (file mode)  
 - Lombok  
 
