@@ -1,5 +1,5 @@
 # Importing JDK and copying required files
-FROM FROM openjdk:21 AS build
+FROM openjdk:21 AS build
 WORKDIR /app
 COPY pom.xml .
 COPY src src
