@@ -1,15 +1,24 @@
-# Build stage
+# Stage 1: Build the application using JDK 21
 FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
-COPY pom.xml .
-RUN mvn -B dependency:resolve || true
-COPY src ./src
-RUN mvn -B package -DskipTests
 
-# Runtime stage
+# Copy necessary files
+COPY pom.xml .
+COPY mvnw .
+COPY .mvn .mvn
+RUN chmod +x mvnw
+
+COPY src src
+
+# Build using Maven Wrapper
+RUN ./mvnw -B package -DskipTests
+
+# Stage 2: Run the built application using JRE 21 (lighter)
 FROM eclipse-temurin:21-jre
 WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+VOLUME /tmp
 
+COPY --from=build /app/target/*.jar app.jar
+
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","app.jar"]
