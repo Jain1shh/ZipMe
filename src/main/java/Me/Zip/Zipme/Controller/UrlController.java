@@ -30,7 +30,7 @@ public class UrlController {
             return "Alias "+alias+" is already in use. Try another alias or go for default zipme.";
         }
         
-        return "Short Url: http://localhost:8080/ziped/" + result;
+        return "Short Url: https://zipme.onrender.com/ziped/" + result;
     }
 
     @GetMapping("/ziped/{code}")
