@@ -1,22 +1,15 @@
-# Importing JDK and copying required files
-FROM openjdk:21 AS build
+# Build stage
+FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
 COPY pom.xml .
-COPY src src
+RUN mvn -B dependency:resolve || true
+COPY src ./src
+RUN mvn -B package -DskipTests
 
-# Copy Maven wrapper
-COPY mvnw .
-COPY .mvn .mvn
-
-# Set execution permission for the Maven wrapper
-RUN chmod +x ./mvnw
-RUN ./mvnw clean package -DskipTests
-
-# Stage 2: Create the final Docker image using OpenJDK 21
-FROM openjdk:21
-VOLUME /tmp
-
-# Copy the JAR from the build stage
+# Runtime stage
+FROM eclipse-temurin:21-jre
+WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
