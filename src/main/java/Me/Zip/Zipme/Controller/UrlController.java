@@ -21,6 +21,12 @@ public class UrlController {
     @Autowired
     UrlService service;
 
+
+    @GetMapping("/isRunning")
+    public String isSystemRunning(){
+      return "Server is up!";
+    }
+
     @PostMapping("/zipme")
     public String zipme(@RequestParam String longUrl, @RequestParam(required = false) String alias) {
         
