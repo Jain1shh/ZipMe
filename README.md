@@ -24,7 +24,7 @@ It generates short codes using Base62 encoding, supports optional custom aliases
 - Spring Web  
 - Spring Data JPA  
 - Spring Cache & caffeine 
-- postgres db  
+- H2 db  
 - Lombok  
 
 ---
